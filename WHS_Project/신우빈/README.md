@@ -19,7 +19,9 @@
     빠른 분석과 대응을 위해 자동화 아키텍쳐를 구성한 것이며, 수집된 아티팩트는 법적 효력이 없음을 밝힙니다.
     <br />
     <br />
-    <a href="https://github.com/Cumulus-AWS/Auto-IR-Analysis_Architecture_In_AWS"><strong>홈으로 돌아가기</strong></a>
+    <h4 align="center">해당 페이지 내용은 원본 페이지를 복사해온 형태임을 밝힙니다.</h4>
+    <br />
+    <a href="https://github.com/Cumulus-AWS/Auto-IR-Analysis_Architecture_In_AWS"><strong>원본 페이지로 바로가기</strong></a>
     <br />
     <br />
   </p>
@@ -32,20 +34,20 @@
 **멘토단 - 우아한 형제들<img src="Image/bae-min.png" width="2%" height="2%">   SOC**
 | 멘토단 | 역할 |
 | --- | --- |
-| 이주호 | 멘토 |
-| 송수호 | PL |
+| ooo | 멘토 |
+| ooo | PL |
 <br />
 
 **큐물러스**
 | 이름 | 한줄소개 |
 | --- | --- |
 | 신우빈 (PM) | 맥치킨 모짜렐라 |
-| [박선하](https://github.com/waaterr1208) | (활력 감소) |
-| [박천웅](https://github.com/CheonWoong-Park) | 어쩌다보니 노예 |
-| [박현재](https://github.com/park1NG) | "신뢰할 수 있는" |
-| [박희진](https://github.com/gmlwlsdl) | 쥬크박스 |
-| [봉승종](https://github.com/bongjong1121) | 塞翁之馬 |
-| [신성훈](https://github.com/bipidus513) | ソコマデダ |
+| ooo | (활력 감소) |
+| ooo | 어쩌다보니 노예 |
+| ooo | "신뢰할 수 있는" |
+| ooo | 쥬크박스 |
+| ooo | 塞翁之馬 |
+| ooo | ソコマデダ |
 <br />
 
 ### 프로젝트 필요성
