@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>딥페이크 탐지 및 검증 도구 - 로그인</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>딥페이크 탐지 및 검증 도구</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home') }}#home">홈</a></li>
+                    <li><a href="{{ url_for('home') }}#about">소개</a></li>
+                    <li><a href="{{ url_for('home') }}#features">기능</a></li>
+                    <li><a href="{{ url_for('home') }}#contact">문의</a></li>
+                    <li class="login"><a href="{{ url_for('login') }}" class="btn-login">로그인</a></li>
+                    <li class="signup"><a href="{{ url_for('signup') }}" class="btn-signup">회원가입</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 회원가입 폼 -->
+    <section class="signup-section">
+        <div class="container">
+            <h2>회원가입</h2>
+            <form id="signupForm" class="signup-form">
+                <label for="username">아이디</label>
+                <input type="text" id="username" name="username" placeholder="아이디 입력" required>
+
+                <label for="email">이메일</label>
+                <input type="email" id="email" name="email" placeholder="이메일 입력" required>
+
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password" placeholder="비밀번호 입력" required>
+
+                <label for="confirm-password">비밀번호 확인</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="비밀번호 확인" required>
+
+                <button type="submit">회원가입</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // 회원가입 폼 제출
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = {
+                username: document.getElementById('username').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value
+            };
+
+            fetch('/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                if (data.message.includes("인증 코드")) {
+                    window.location.href = '/verify';  // 회원가입 완료 후 인증 페이지로 리다이렉트
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+    <script>
+        // 로그인 상태 확인 후 버튼 처리
+        window.onload = function() {
+            const sessionid = localStorage.getItem('sessionid');
+            
+            if (sessionid) {
+                // 로그인 상태: 로그인 버튼을 로그아웃 버튼으로 변경
+                document.querySelector('.btn-login').textContent = '로그아웃';
+                document.querySelector('.btn-login').setAttribute('href', '#');
+                document.querySelector('.btn-login').addEventListener('click', function(event) {
+                    event.preventDefault();
+                    localStorage.removeItem('sessionid'); // 세션 삭제
+                    alert('로그아웃되었습니다.');
+                    window.location.href = '/'; // 로그아웃 후 메인 페이지로 리다이렉트
+                });
+            } else {
+                // 로그아웃 상태: 로그인 버튼 유지
+                document.querySelector('.btn-login').textContent = '로그인';
+                document.querySelector('.btn-login').setAttribute('href', '/login');
+            }
+        };
+    </script>
+</body>
+</html>

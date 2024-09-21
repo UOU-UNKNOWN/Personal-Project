@@ -1,0 +1,687 @@
+/* 기본 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* 헤더 및 네비게이션 */
+header {
+    background: #333;
+    color: #fff;
+    padding: 1.5rem 0;
+}
+
+header h1 {
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    align-items: center;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #007BFF;
+}
+
+/* 로그인 및 회원가입 버튼 */
+.btn-login, .btn-signup {
+    padding: 0.5rem 1rem;
+    background-color: transparent; /* 배경 제거 */
+    color: #fff; /* 텍스트 색상 */
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.btn-login:hover, .btn-signup:hover {
+    color: #007BFF; /* 호버 시 색상 변경 */
+}
+
+.login {
+    margin-left: auto;
+}
+
+.signup {
+    margin-left: 1rem;
+}
+
+/* Hero 섹션 */
+.hero {
+    background: url('/static/img/main_header.jpg') no-repeat center center/cover;
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+.hero h2 {
+    font-size: 3rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+}
+
+.hero .btn {
+    background: #007BFF;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+    margin-top: 2rem; /* 추가된 여백 */
+    position: relative; /* 위치를 상대적으로 변경 */
+    top: 20px; /* 원하는 만큼 아래로 이동 */
+}
+
+
+.hero .btn:hover {
+    background: #0056b3;
+}
+
+/* 소개 섹션 */
+.about-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 4rem;
+}
+
+.about-text {
+    flex: 1;
+    margin-right: 2rem;
+    margin-top: 4rem;
+}
+
+.about-text p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #555;
+    text-align: justify;
+}
+
+.about h2 {
+    margin-bottom: -3rem;
+    margin-top: 3rem;
+    font-size: 2rem;
+}
+
+.about-image img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 주요 기능 섹션 */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.feature-item {
+    text-align: center;
+    background: #f9f9f9;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.feature-item:hover {
+    transform: translateY(-10px);
+}
+
+.feature-item h3 {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.feature-item p {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+}
+
+.icon {
+    font-size: 3rem;
+    color: #007BFF;
+}
+
+/* 문의 섹션 */
+.contact {
+    padding: 2rem 0;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+.contact h2 {
+    font-size: 2rem;
+    margin-bottom: 0rem;
+}
+
+.contact p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* 푸터 스타일 */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .login {
+        margin-left: 0;
+    }
+
+    .about-content {
+        flex-direction: column;
+    }
+
+    .about-text {
+        margin-right: 0;
+        margin-bottom: 2rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h2 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .hero .btn {
+        padding: 0.8rem 1.5rem;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    input[type="text"] {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* 버튼 스타일 */
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease-in-out;
+}
+
+input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* 공통 제목 스타일 */
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* 설명 텍스트 스타일 */
+p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* 입력 필드 스타일 */
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+
+/* login.html */
+/* 로그인 섹션 스타일 */
+.login-section {
+    padding: 3rem 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.login-form {
+    display: inline-block;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+/* 입력 필드 스타일 수정 */
+.login-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #333;
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    padding-left: 10px; /* 텍스트 왼쪽으로 이동 */
+}
+
+.login-form input {
+    width: 100%;
+    padding: 0.7rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding-left: 10px; /* 입력 텍스트 왼쪽으로 여백 추가 */
+}
+
+.login-form .btn-login {
+    padding: 0.7rem 1.5rem;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    margin-top: 0rem; /* 버튼과 입력 필드 사이 간격 추가 */
+}
+
+.login-form .btn-login:hover {
+    background-color: #0056b3;
+}
+
+.login-section h2 {
+    font-size: 2.5rem; /* 폰트 크기를 크게 설정 */
+    font-weight: bold; /* 굵은 글씨 */
+    color: #333;
+    margin-bottom: 2rem; /* 제목 아래 여백 */
+}
+
+
+/* signup.html */
+/* 회원가입 섹션 */
+.signup-section {
+    padding: 3rem 0;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    min-height: 100vh; /* Make sure the section takes full height of the viewport */
+}
+
+.signup-form {
+    display: block;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.signup-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.signup-section input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.signup-form .btn-signup {
+    padding: 0.7rem 1.5rem;
+    background-color: #28A745;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.signup-section button:hover {
+    background-color: #218838;
+}
+
+.signup-section button {
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.signup-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align : center;
+}
+
+#error-message {
+    color: #D8000C;
+    background-color: #FFD2D2;
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px solid #D8000C;
+    border-radius: 5px;
+    width: 95%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+
+
+/* upload.html */
+/* 업로드 컨테이너 */
+.upload-section {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.upload-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.upload-section form {
+    display: inline-block;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+.upload-section input[type="file"] {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.upload-section button {
+    padding: 1rem 2rem;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-section button:hover {
+    background-color: #0056b3;
+}
+
+#resultMessage {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+
+
+/* 신고하기 아이콘  */
+.report-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+    z-index: 1000; /* 다른 요소 위에 표시 */
+}
+
+.report-icon img {
+    width: 100%;
+    cursor: pointer; /* 커서를 손가락 모양으로 변경 */
+}
+
+/* 툴팁 스타일 */
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 12px;
+    visibility: hidden; /* 기본적으로 숨김 */
+}
+
+.report-icon:hover .tooltip {
+    visibility: visible; /* 마우스를 올리면 툴팁이 보이도록 설정 */
+}
+
+
+
+/* 팝업 창 css */
+.popup {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명한 검은 배경 */
+    z-index: 1001; /* 다른 요소들보다 위에 표시 */
+}
+
+.popup-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    position: relative; /* 닫기 버튼 위치를 상대적으로 설정 */
+}
+
+.popup-content h3 {
+    margin-bottom: 20px;
+}
+
+.popup-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.popup-content ul li {
+    margin-bottom: 10px;
+}
+
+.popup-content ul li a {
+    text-decoration: none;
+    color: blue;
+}
+
+.popup-content ul li a:hover {
+    text-decoration: underline;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* 닫기 버튼 팝업 창 내부에 위치 */
+.popup-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: black;
+}
+
+
+
+/* 드래그 앤 드랍 영역 스타일 */
+#drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 30px;
+    margin: 20px auto;
+    width: 50%;
+    max-width: 600px; /* 최대 너비 설정 */
+    display: block; /* block으로 설정하여 수직으로 정렬 */
+    background-color: #f9f9f9;
+}
+
+#drop-area p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+#drop-area.highlight {
+    border-color: blue;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+
+#fileElem {
+    display: none; /* 기본적으로 숨김 */
+}
+
+#upload-button {
+    display: inline-block;
+    width: 50%;
+    max-width: 300px; /* 최대 너비 설정 */
+    padding: 15px 0;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px; /* 여백 추가 */
+}
+
+#resultMessage {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+
+/* 파일 목록 스타일 */
+#fileList {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+.file-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

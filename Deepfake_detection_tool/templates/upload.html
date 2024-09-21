@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>딥페이크 탐지 - 파일 업로드</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>딥페이크 탐지 - 파일 업로드</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home') }}#home">홈</a></li>
+                    <li><a href="{{ url_for('home') }}#about">소개</a></li>
+                    <li><a href="{{ url_for('home') }}#features">기능</a></li>
+                    <li><a href="{{ url_for('home') }}#contact">문의</a></li>
+                    <li class="login"><a href="{{ url_for('login') }}" class="btn-login">로그인</a></li>
+                    <li class="signup"><a href="{{ url_for('signup') }}" class="btn-signup">회원가입</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 드래그 앤 드랍 업로드 섹션 -->
+    <section class="upload-section">
+        <div class="container">
+            <h2>파일을 드래그 앤 드랍하여 딥페이크 여부를 탐지하세요</h2>
+
+            <!-- 드래그 앤 드랍 영역 -->
+            <div id="drop-area">
+                <p id="fileLabel">여기에 파일을 드래그하세요.</p>
+                <input type="file" id="fileElem" multiple onchange="handleFiles(this.files)">
+                <label class="button" for="fileElem">파일 선택</label>
+            </div>
+
+            <!-- 파일 목록 표시 -->
+            <div id="fileList"></div>
+
+            <button id="upload-button" onclick="uploadFiles()">업로드 및 탐지</button>
+        </div>
+
+        <div id="resultMessage"></div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 딥페이크 탐지 도구. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        let dropArea = document.getElementById('drop-area');
+        let fileLabel = document.getElementById('fileLabel');
+
+        // 기본 이벤트 방지
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false)
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        // 드래그 영역 강조
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, () => dropArea.classList.add('highlight'), false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, () => dropArea.classList.remove('highlight'), false);
+        });
+
+        // 드롭한 파일 처리
+        dropArea.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            let dt = e.dataTransfer;
+            let files = dt.files;
+            handleFiles(files);
+        }
+
+        let fileList = [];
+
+        function handleFiles(files) {
+            fileList = [...files]; // 기존 파일 덮어쓰기
+            let fileNames = fileList.map(file => file.name).join(', ');
+            fileLabel.textContent = fileNames;  // 파일 이름을 표시
+            document.getElementById('fileElem').files = files;
+
+            // 파일 목록을 표시
+            displayFileList(fileList);
+        }
+
+        function displayFileList(files) {
+            fileListDisplay.innerHTML = ''; // 기존 파일 목록 초기화
+            files.forEach(file => {
+                let fileItem = document.createElement('div');
+                fileItem.classList.add('file-item');
+                fileItem.innerHTML = `
+                    <strong>파일명:</strong> ${file.name}<br>
+                    <strong>크기:</strong> ${(file.size / 1024).toFixed(2)} KB<br>
+                `;
+                fileListDisplay.appendChild(fileItem);
+            });
+        }
+
+        function uploadFiles() {
+            if (fileList.length === 0) {
+                alert('파일을 선택하거나 드래그하여 추가하세요.');
+                return;
+            }
+
+            // 버튼 클릭 후 "분석 중입니다" 메시지 바로 표시
+            resultMessage.innerHTML = `<p>분석 중입니다...</p>`;
+
+
+            let formData = new FormData();
+            fileList.forEach(file => {
+                formData.append('file', file);
+            });
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('resultMessage').innerHTML = `<p>${data.message}</p>`;
+            })
+            .catch(error => {
+                document.getElementById('resultMessage').innerHTML = `<p>에러 발생: ${error.message}</p>`;
+            });
+        }
+    </script>
+    
+    <script>
+        // 로그인 상태 확인 후 버튼 처리
+        window.onload = function() {
+            const sessionid = localStorage.getItem('sessionid');
+            
+            if (sessionid) {
+                // 로그인 상태: 로그인 버튼을 로그아웃 버튼으로 변경
+                document.querySelector('.btn-login').textContent = '로그아웃';
+                document.querySelector('.btn-login').setAttribute('href', '#');
+                document.querySelector('.btn-login').addEventListener('click', function(event) {
+                    event.preventDefault();
+                    localStorage.removeItem('sessionid'); // 세션 삭제
+                    alert('로그아웃되었습니다.');
+                    window.location.href = '/'; // 로그아웃 후 메인 페이지로 리다이렉트
+                });
+            } else {
+                // 로그아웃 상태: 로그인 버튼 유지
+                document.querySelector('.btn-login').textContent = '로그인';
+                document.querySelector('.btn-login').setAttribute('href', '/login');
+            }
+        };
+    </script>
+
+    <script>
+        document.getElementById('startButton').addEventListener('click', function(event) {
+            event.preventDefault(); // 버튼의 기본 동작 막기
+
+            const sessionid = localStorage.getItem('sessionid'); // 세션 확인
+
+            if (sessionid) {
+                // 로그인되어 있다면 /upload 페이지로 이동
+                window.location.href = '/upload';
+            } else {
+                // 로그인되어 있지 않다면 메시지 출력
+                alert("로그인이 필요합니다. 로그인 페이지로 이동합니다.");
+                window.location.href = '/login';
+            }
+        });
+    </script>
+</body>
+</html>
